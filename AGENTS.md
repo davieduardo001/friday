@@ -20,18 +20,39 @@
   - Documentação atualizada
   - Deploy em `homolog` validado
 
+## Delegação por Agente
+
+Toda tarefa solicitada (comunicar com o repositório, criar, revisar, documentar...) deve ser executada por um **agente** de `agents/`. A conversa principal só **orquestra**: entende o pedido, escolhe o agente, delega e reporta o resultado.
+
+| Tipo de tarefa | Agente |
+|----------------|--------|
+| Escrever US, critérios de aceite, escopo, abrir/consultar issues | `analista` |
+| Implementar, corrigir bug, branch, commits, abrir PR | `dev` |
+| Escrever/rodar testes, validar `test_command` | `tester` |
+| Revisar código/PR, validar DoD | `reviewer` |
+| Documentação, README, CHANGELOG | `redator` |
+
+Regras:
+- **Uma tarefa, um agente.** Tarefa que cruza papéis (ex: implementar + testar) é dividida em etapas, cada uma com seu agente, na ordem do pipeline `issue → PR → review → DoD`.
+- **Passe o contexto completo ao agente**: pedido original, `projeto.md`, issue/US relacionada e arquivos relevantes. O agente não herda a conversa.
+- **O agente segue as regras comuns** deste arquivo e usa os skills `issue` e `pr` para falar com a plataforma.
+- **Exceção — execução direta**: perguntas, explicações e ajustes triviais (ex: ler um arquivo, corrigir uma linha) não precisam de agente.
+- **Portável entre CLIs**: use o mecanismo de subagente da CLI (ex: Agent tool no Claude Code, agentes do Gemini). Se a CLI não suportar subagentes, assuma o papel do agente carregando `agents/<nome>.md` e siga suas regras na própria conversa.
+
 ## Como cada CLI lê os skills
 
 ### Claude Code
-- Skills são arquivos Markdown no diretório raiz do projeto.
-- O agente **não** lê `AGENTS.md` automaticamente; ele lê o `SKILL.md` de cada skill.
-- `AGENTS.md` serve como **documentação** das regras comuns e como cada CLI deve interpretar os skills.
+- Skills e agentes são arquivos Markdown com frontmatter (`name`, `description`), instalados por `instalar.sh`.
+- O agente **não** lê `AGENTS.md` automaticamente: o `CLAUDE.md` do projeto precisa conter `@AGENTS.md`. O `instalar.sh --init-project` cria isso.
+- O `AGENTS.md` é copiado **para dentro do projeto**: importar arquivo de fora do projeto exige aprovação e, sem ela, não é carregado.
 - Se o `projeto.md` não existir, o skill pergunta e oferece criar a partir do `projeto.model.md`.
 
 ### Gemini CLI
-- Skills são arquivos Markdown no diretório raiz do projeto.
-- O agente **não** lê `AGENTS.md` automaticamente; ele lê o `SKILL.md` de cada skill.
-- `AGENTS.md` serve como **documentação** das regras comuns e como cada CLI deve interpretar os skills.
+- Skills e agentes são arquivos Markdown com frontmatter (`name`, `description`).
+- O agente **não** lê `AGENTS.md` automaticamente: o `GEMINI.md` do projeto precisa conter `@AGENTS.md`. O `instalar.sh --init-project` cria isso.
+
+### opencode / Pi
+- Leem `AGENTS.md` da raiz do projeto nativamente (o `--init-project` já o copia para lá).
 - Se o `projeto.md` não existir, o skill pergunta e oferece criar a partir do `projeto.model.md`.
 
 ## Ordem de Precedência para Regras do Projeto
@@ -67,6 +88,5 @@ Cada skill deve ter um `SKILL.md` com:
 
 ## Notas
 
-- `AGENTS.md` não é carregado automaticamente pelo Pi; é apenas uma referência para o modelo.
 - Se um skill não encontrar a plataforma no `projeto.md`, ele deve falhar com uma mensagem clara.
 - Skills devem ser **portáteis** — funcionam em qualquer projeto que tenha o `projeto.md` correto.

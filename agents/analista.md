@@ -1,3 +1,8 @@
+---
+name: analista
+description: Analista de requisitos. Use para escrever US em BDD, definir critérios de aceite e escopo, e criar/consultar issues via skill issue.
+---
+
 # Agente: Analista de Requisitos
 
 ## Descrição

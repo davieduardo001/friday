@@ -16,6 +16,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+- `AGENTS.md`: common rule "Delegação por Agente" — every requested task is delegated to a matching agent (`analista`, `dev`, `tester`, `reviewer`, `redator`), CLI-agnostic.
+
+- Agents (`dev`, `tester`, `reviewer`, `redator`, `analista`) now have YAML frontmatter (`name`, `description`) so CLIs register them as subagents.
+- `instalar.sh --init-project` implemented: creates `project.md`, `AGENTS.md`, `CLAUDE.md` and `GEMINI.md` (importing `@AGENTS.md`).
+
+### Fixed
+- `instalar.sh` is now executable.
+
 ### Planned
 - v1.1: Skills `sprint`, `vincular`, `commits`.
 - v1.2: Support for more tools (pi, hermes, opencode, deepseek, codex).

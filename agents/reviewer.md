@@ -1,3 +1,8 @@
+---
+name: reviewer
+description: Revisor de código. Use para revisar PRs/MRs, verificar Conventional Commits, US BDD e DoD, e aprovar ou rejeitar com justificativa.
+---
+
 # Agente: Reviewer
 
 ## Descrição
