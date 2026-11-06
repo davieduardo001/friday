@@ -12,6 +12,8 @@ current_sprint: "Sprint 3"
 teste: comando
 arquitetura: link ou regras curtas
 templates_us: caminho
+prd_dir: docs/prd          # opcional (padrão: docs/prd)
+spec_dir: docs/specs       # opcional (padrão: docs/specs)
 ```
 
 ## Requisitos do projeto
@@ -23,6 +25,8 @@ templates_us: caminho
 - `teste` é opcional
 - `arquitetura` é opcional
 - `templates_us` é opcional
+- `prd_dir` é opcional (padrão: `docs/prd`) — onde `redator`/`analista` salvam PRDs
+- `spec_dir` é opcional (padrão: `docs/specs`) — onde `redator`/`analista` salvam SPECs
 
 ## Exemplos
 
