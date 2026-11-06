@@ -1,6 +1,9 @@
-# SKILL.md
+---
+name: issue
+description: Criar, listar e gerenciar issues/bugs/features em GitHub, GitLab ou Azure DevOps com Conventional Commits no título e descrição em US formato BDD (Dado/Quando/Então). Use quando o usuário pedir para abrir uma issue, reportar um bug, criar uma task/história de usuário ou consultar issues do repositório.
+---
 
-## Issue
+# Issue
 
 ### Uso
 `issue "Título" "Descrição" [--type bug|feature] [--sprint "Sprint 3"]`

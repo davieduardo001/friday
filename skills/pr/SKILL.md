@@ -1,4 +1,9 @@
-# SKILL.md — PR
+---
+name: pr
+description: Criar pull/merge requests em GitHub, GitLab ou Azure DevOps com Conventional Commits, descrição em US BDD e vínculo à issue via Closes #N. Use quando o usuário pedir para abrir um PR/MR, revisar ou vincular mudanças a uma issue.
+---
+
+# PR
 
 ## Uso
 `pr "Título" "Descrição" [--type bug|feature] [--sprint "Sprint 3"]`
