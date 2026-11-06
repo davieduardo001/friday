@@ -1,3 +1,8 @@
+---
+name: dev
+description: Desenvolvedor sênior. Use para implementar issues/US, corrigir bugs, criar branches, fazer commits (Conventional Commits) e abrir PR vinculado à issue.
+---
+
 # Agente: Dev
 
 ## Descrição

@@ -1,3 +1,8 @@
+---
+name: redator
+description: Redator de documentação. Use para escrever PRD, SPEC, README, CHANGELOG e documentar arquitetura e decisões técnicas.
+---
+
 # Agente: Redator
 
 ## Descrição

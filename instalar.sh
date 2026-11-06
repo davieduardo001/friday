@@ -11,7 +11,7 @@ GEMINI_DIR="$HOME_DIR/.gemini"
 AGENTS_SKILLS_DIR="$HOME_DIR/.agents/skills"
 AGENTS_DIR="$HOME_DIR/.agents"
 
-INSTALL_ARGS=()
+INIT_PROJECT=false
 REMOVE=false
 FORCE=false
 
@@ -19,7 +19,7 @@ for arg in "$@"; do
   case "$arg" in
     --remover) REMOVE=true ;;
     --force) FORCE=true ;;
-    --init-project) INSTALL_ARGS+=("--init-project") ;;
+    --init-project) INIT_PROJECT=true ;;
     *) echo "Unknown argument: $arg"; exit 1 ;;
   esac
 done
@@ -50,6 +50,37 @@ if [ "$REMOVE" = true ]; then
   fi
 
   echo "Removed dotfiles_ai skills and agents."
+  exit 0
+fi
+
+# Project init: project.md + AGENTS.md (common rules) + CLAUDE.md/GEMINI.md importing it.
+# AGENTS.md is copied INTO the project because Claude Code/Gemini require approval to
+# import files outside the project (unapproved imports are silently not loaded).
+if [ "$INIT_PROJECT" = true ]; then
+  PROJECT_DIR="$(pwd)"
+
+  copy_if_missing() {
+    local src="$1" dst="$2"
+    if [ -e "$dst" ]; then
+      echo "SKIPPED: $(basename "$dst") already exists."
+    else
+      cp "$src" "$dst"
+      echo "Created $(basename "$dst")"
+    fi
+  }
+
+  copy_if_missing "$DOTFILES_AI_DIR/project.model.md" "$PROJECT_DIR/project.md"
+  copy_if_missing "$DOTFILES_AI_DIR/AGENTS.md" "$PROJECT_DIR/AGENTS.md"
+
+  for file in CLAUDE.md GEMINI.md; do
+    if [ -e "$PROJECT_DIR/$file" ]; then
+      echo "SKIPPED: $file already exists. Add the line '@AGENTS.md' to it."
+    else
+      printf '# Friday\n\n@AGENTS.md\n' > "$PROJECT_DIR/$file"
+      echo "Created $file -> imports AGENTS.md"
+    fi
+  done
+  echo "Fill in project.md."
   exit 0
 fi
 

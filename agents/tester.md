@@ -1,3 +1,8 @@
+---
+name: tester
+description: Testador. Use para escrever e rodar testes unitários e de integração (BDD) e validar o test_command do projeto.md antes do merge.
+---
+
 # Agente: Tester
 
 ## Descrição

@@ -74,7 +74,8 @@ This creates symlinks in:
 cd meu-projeto-novo
 ~/.friday/instalar.sh --init-project
 # → copies project.model.md → project.md
-# → opens it in $EDITOR
+# → copies AGENTS.md into the project (common rules, incl. agent delegation)
+# → creates CLAUDE.md and GEMINI.md importing @AGENTS.md
 ```
 
 Edit `project.md` with your project details:
