@@ -58,7 +58,7 @@ friday/
 ### 1. Install globally (once)
 
 ```bash
-git clone https://github.com/davidsouzas/friday.git ~/.friday
+git clone https://github.com/davieduardo001/friday.git ~/.friday
 cd ~/.friday
 ./instalar.sh
 ```
