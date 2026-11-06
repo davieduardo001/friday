@@ -12,6 +12,8 @@
   - `test_command` (ex: `npm test`)
   - `architecture` (link para arquitetura ou regras curtas)
   - `us_template_path` (caminho para templates US)
+  - `prd_dir` (opcional, padrão `docs/prd`) e `spec_dir` (opcional, padrão `docs/specs`)
+  - **Local e nomes:** PRDs e SPECs ficam fora de diretórios de harness (`.claude/`, `.gemini/`...). Nome do arquivo: `<issue>-<slug>.md` (ex: `docs/prd/42-login-jwt.md`, `docs/specs/42-login-jwt.md`); sem issue, use só `<slug>.md`.
 - **DoD** — Todo item deve passar:
   - Code review (dev ou reviewer)
   - Testes unitários e de integração

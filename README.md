@@ -87,6 +87,8 @@ current_sprint: "Sprint 3"
 teste: npm run test:ci
 arquitetura: docs/ARCH.md
 templates_us: .friday/templates/us.md
+prd_dir: docs/prd        # optional, default docs/prd
+spec_dir: docs/specs     # optional, default docs/specs
 ```
 
 ### 3. Use it
@@ -120,6 +122,7 @@ Every project has a `project.md` at its root. Skills read this file to know:
 - Test command
 - Architecture docs location
 - US template path
+- PRD/SPEC directories (`prd_dir`, `spec_dir`; default `docs/prd` and `docs/specs`, files named `<issue>-<slug>.md`)
 
 ### Skills
 
